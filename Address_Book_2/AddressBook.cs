@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace Address_Book_2
 {
-    internal class AddressBook
+    public class AddressBook
     {
         #region Dictionary for Multiple Address Book
-        IDictionary<string, Book> multipleAddressBook = new Dictionary<string, Book>();
+        public IDictionary<string, Book> multipleAddressBook = new Dictionary<string, Book>();
         #endregion
 
         #region Add Multiple AddressBook in Dictionary
         public void AddAddressBook(Book book, string addressBookName)
         {
             multipleAddressBook.Add(addressBookName, book);
+            FileIOOperations.WritingAllPersonContactsinFile(multipleAddressBook);
         }
         #endregion
 
@@ -71,37 +72,82 @@ namespace Address_Book_2
         }
         #endregion
 
-        #region For Viewing Person in a city or State across Multiple AddressBook
-        public void SeachingPersonByCityName()
+        #region For Counting Number of Persons in a particular city across Multiple AddressBook
+        public void SeachingPersonByCityNameAndCountingAlso()
         {
             Console.WriteLine("Enter the City name: ");
             string cityName = Console.ReadLine();
+            int countByCity = 0;
             foreach (var kvp in multipleAddressBook)
             {
                 foreach (var v in kvp.Value.listOfContacts)
                 {
                     if (v.city == cityName)
                     {
-                        Console.WriteLine($"{v.firstName} {v.lastName} lives in this {cityName}.");
+                        Console.WriteLine($"{v.firstName} {v.lastName} lives in this {cityName} city.");
+                        countByCity++;
                     }
                 }
             }
+            Console.WriteLine($"There are {countByCity} persons residing in this {cityName}");
         }
         #endregion
 
-        #region For Searching Person in a particular State across Multiple AddressBook
-        public void SeachingPersonByStateName()
+        #region For Counting Number of Person in a particular State across Multiple AddressBook
+        public void SeachingPersonByStateNameAndCountingAlso()
         {
             Console.WriteLine("Enter the State name: ");
             string stateName = Console.ReadLine();
+            int countByState = 0;
             foreach (var kvp in multipleAddressBook)
             {
                 foreach (var v in kvp.Value.listOfContacts)
                 {
-                    if (v.city == stateName)
+                    if (v.state == stateName)
                     {
-                        Console.WriteLine($"{v.firstName} {v.lastName} lives in this {stateName}.");
+                        Console.WriteLine($"{v.firstName} {v.lastName} lives in this {stateName} state.");
+                        countByState++;
                     }
+                }
+            }
+            Console.WriteLine($"There are {countByState} persons residing in this {stateName}");
+        }
+        #endregion
+
+        #region Sorting by Name, State, City & Zip
+        public void SortContactPerson()
+        {
+            Console.WriteLine("Enter 1-to Sort contact based on First Name");
+            Console.WriteLine("Enter 2-to Sort Contact Based on State");
+            Console.WriteLine("Enter 3-to Sort Contact based on City");
+            Console.WriteLine("Enter 4-to Sort Contact based on zip");
+            int sortChoice = Convert.ToInt32(Console.ReadLine());
+            foreach (var kvp in multipleAddressBook)
+            {
+                List<Contacts> sortingListBySelectedField = kvp.Value.listOfContacts;
+                CompareContactFields compareContactFields = new CompareContactFields();
+                switch (sortChoice)
+                {
+                    case 1:
+                        compareContactFields.CompareByContactDetail = CompareContactFields.SortingType.FIRST_NAME;
+                        sortingListBySelectedField.Sort(compareContactFields);
+                        break;
+                    case 2:
+                        compareContactFields.CompareByContactDetail = CompareContactFields.SortingType.STATE;
+                        sortingListBySelectedField.Sort(compareContactFields);
+                        break;
+                    case 3:
+                        compareContactFields.CompareByContactDetail = CompareContactFields.SortingType.CITY;
+                        sortingListBySelectedField.Sort(compareContactFields);
+                        break;
+                    case 4:
+                        compareContactFields.CompareByContactDetail = CompareContactFields.SortingType.ZIP;
+                        sortingListBySelectedField.Sort(compareContactFields);
+                        break;
+                }
+                foreach (Contacts contact in sortingListBySelectedField)
+                {
+                    Console.WriteLine(contact.ToString());
                 }
             }
         }
