@@ -13,6 +13,9 @@ namespace Address_Book_2
             AddressBook addressBook = new AddressBook();
             addressBook.AddContactsDetailinAddressBook();
             FileIOOperations.ReadingAllPersonContactsinFile();
+            FileIOOperations.ReadingAllPersonContactsfromCSVFile();
+            //FileIOOperations.ReadingAllPersonContactsFromJsonFile();
+            //addressBook.SortContactPerson();
             //addressBook.DisplayContactsInAddressBookDictionary();
             //addressBook.SeachingPersonByCityNameAndCountingAlso();
             //addressBook.SeachingPersonByStateNameAndCountingAlso();

@@ -2,5 +2,9 @@
 {
     internal class CsvWriter
     {
+        internal void Flush()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

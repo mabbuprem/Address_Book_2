@@ -17,6 +17,8 @@ namespace Address_Book_2
         {
             multipleAddressBook.Add(addressBookName, book);
             FileIOOperations.WritingAllPersonContactsinFile(multipleAddressBook);
+            FileIOOperations.WritigAllPersonContactsinCSVFile(multipleAddressBook);
+            FileIOOperations.WritigAllPersonContactsinJsonFile(multipleAddressBook);
         }
         #endregion
 
@@ -111,6 +113,52 @@ namespace Address_Book_2
                 }
             }
             Console.WriteLine($"There are {countByState} persons residing in this {stateName}");
+        }
+        #endregion
+
+        #region Sorting by Name, State, City & Zip
+        public void SortContactPerson()
+        {
+            Console.WriteLine("Enter \"1\" to Sort contact based on First Name");
+            Console.WriteLine("Enter \"2\" to Sort Contact Based on State");
+            Console.WriteLine("Enter \"3\" to Sort Contact based on City");
+            Console.WriteLine("Enter \"4\" to Sort Contact based on zip");
+            int sortChoice = Convert.ToInt32(Console.ReadLine());
+            foreach (var kvp in multipleAddressBook)
+            {
+                List<Contacts> sortingListBySelectedField = kvp.Value.listOfContacts;
+                CompareContactFields compareContactFields = new CompareContactFields();
+                switch (sortChoice)
+                {
+                    case 1:
+                        compareContactFields.CompareByContactDetail = CompareContactFields.SortingType.FIRST_NAME;
+                        sortingListBySelectedField.Sort(compareContactFields);
+                        //// Using lambda Expression, Sorting of Complex Type becomes easy.
+                        //sortingListBySelectedField.Sort((c1, c2)=> c1.firstName.CompareTo(c2.firstName));
+                        break;
+                    case 2:
+                        compareContactFields.CompareByContactDetail = CompareContactFields.SortingType.STATE;
+                        sortingListBySelectedField.Sort(compareContactFields);
+                        //// Using lambda Expression, Sorting of Complex Type becomes easy.
+                        //sortingListBySelectedField.Sort((c1, c2) => c1.state.CompareTo(c2.state));
+                        break;
+                    case 3:
+                        compareContactFields.CompareByContactDetail = CompareContactFields.SortingType.CITY;
+                        sortingListBySelectedField.Sort(compareContactFields);
+                        //// Using lambda Expression, Sorting of Complex Type becomes easy.
+                        //sortingListBySelectedField.Sort((c1, c2) => c1.city.CompareTo(c2.city));
+                        break;
+                    case 4:
+                        compareContactFields.CompareByContactDetail = CompareContactFields.SortingType.ZIP;
+                        //// Using lambda Expression, Sorting of Complex Type becomes easy.
+                        //sortingListBySelectedField.Sort((c1, c2) => c1.zipCode.CompareTo(c2.zipCode));
+                        break;
+                }
+                foreach (Contacts contact in sortingListBySelectedField)
+                {
+                    Console.WriteLine(contact.ToString());
+                }
+            }
         }
         #endregion
     }
