@@ -1,35 +1,31 @@
-Address Book Name : prem 
+Address Book Name : College Students
 firstName : Prem
-lastName : 
-address : 
-city : 
-state : 
-zipCode : 1
-phoneNo : 1
-email : 1
-firstName : Praveen
-lastName : 
-address : 
-city : 
-state : 
-zipCode : 5
-phoneNo : 5
-email : 5
-
-Address Book Name : Kiran 
+lastName : Kumar
+address : 657/8
+city : Ongole
+state : AndhraPradesh
+zipCode : 124113
+phoneNo : 7206594149
+email : mabbupremkumar@gmail.comfirstName : Praveen
+lastName : Kumar
+address : 789/8
+city : Ongole
+state : AndhraPradesh
+zipCode : 569712
+phoneNo : 7015906297
+email : praveen@gmail.comAddress Book Name : Working Professionals
 firstName : Kiran
+lastName : Kumar
+address : 598/3
+city : Ongole
+state : AndhraPradesh
+zipCode : 124001
+phoneNo : 895555979
+email : kiran@gmail.comfirstName : Kalyan
 lastName : 
-address : 
-city : 
-state : 
-zipCode : 6
-phoneNo : 6
-email : 6
-firstName : Kalyan
-lastName : 
-address : 
-city : 
-state : 
-zipCode : 8
-phoneNo : 8
-email : 8
+address : 458/2
+city : Ongole
+state : AndhraPradesh
+zipCode : 456321
+phoneNo : 9215214254
+email : kalyan@gmail.com.com
